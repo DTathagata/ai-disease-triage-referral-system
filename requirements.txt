@@ -1,0 +1,10 @@
+asgiref==3.11.1
+Django==5.2.4
+joblib==1.5.3
+narwhals==2.23.0
+numpy==2.3.1
+scikit-learn==1.7.1
+scipy==1.16.0
+sqlparse==0.5.5
+threadpoolctl==3.6.0
+tzdata==2026.2

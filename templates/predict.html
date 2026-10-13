@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Predict — ChronicML</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+  {% include 'inc/menu.html' %}
+
+  <div style="padding: 40px;">
+
+    {% if not result %}
+    <h2>Predict</h2>
+    <br>
+    <form method="POST" action="{% url 'predict' %}">
+      {% csrf_token %}
+
+      <p>Choose the symptoms :</p>
+      <select name="symptom1" style="width:100%; padding:8px; margin-bottom:16px;">
+        <option value="">--Please choose symptom--</option>
+        {% for s in symptoms %}
+          <option value="{{ s }}">{{ s|title }}</option>
+        {% endfor %}
+      </select>
+
+      <p>Choose the symptoms :</p>
+      <select name="symptom2" style="width:100%; padding:8px; margin-bottom:16px;">
+        <option value="">--Please choose symptom--</option>
+        {% for s in symptoms %}
+          <option value="{{ s }}">{{ s|title }}</option>
+        {% endfor %}
+      </select>
+
+      <p>Choose the symptoms :</p>
+      <select name="symptom3" style="width:100%; padding:8px; margin-bottom:16px;">
+        <option value="">--Please choose symptom--</option>
+        {% for s in symptoms %}
+          <option value="{{ s }}">{{ s|title }}</option>
+        {% endfor %}
+      </select>
+
+      <p>Choose the symptoms :</p>
+      <select name="symptom4" style="width:100%; padding:8px; margin-bottom:16px;">
+        <option value="">--Please choose symptom--</option>
+        {% for s in symptoms %}
+          <option value="{{ s }}">{{ s|title }}</option>
+        {% endfor %}
+      </select>
+
+      <p>Choose the symptoms :</p>
+      <select name="symptom5" style="width:100%; padding:8px; margin-bottom:16px;">
+        <option value="">--Please choose symptom--</option>
+        {% for s in symptoms %}
+          <option value="{{ s }}">{{ s|title }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+
+{% else %}
+
+<div style="text-align:center;">
+  <h2>{{ result }}</h2>
+  <br>
+  {% if image_file %}
+    {% load static %}
+    <img src="{% static image_file %}"
+         alt="{{ result }}"
+         style="max-width:400px; border-radius:8px;"/>
+  {% else %}
+    <p>No image available for this disease.</p>
+  {% endif %}
+  <br><br>
+  <a href="{% url 'predict' %}">← Try again</a>
+</div>
+
+{% endif %}
+  </div>
+
+  {% include 'inc/footer.html' %}
+
+</body>
+</html>
